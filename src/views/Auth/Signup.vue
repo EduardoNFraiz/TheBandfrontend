@@ -290,20 +290,6 @@
   </FullScreenLayout>
 </template>
 
-Corrigindo o Código da Página de Registro
-O código que você enviou para a sua página de registro (Signup.vue) contém uma falha grave na lógica: você está tentando autenticar o usuário imediatamente após um registro bem-sucedido, mas não está lidando com a resposta do backend de forma segura e completa. Além disso, o seu código de telemetria não está sendo usado.
-
-Aqui está o código corrigido com os seguintes ajustes:
-
-Validação de Resposta: A lógica de autenticação após o registro (o/token/) está dentro de um bloco if que verifica se o registro foi bem-sucedido. No entanto, o seu código não lida com possíveis falhas nesse segundo passo, o que pode causar erros silenciosos.
-
-Armazenamento Inseguro: O localStorage é usado para armazenar tokens de acesso, o que não é seguro contra ataques XSS.
-
-Telemetria: Adicionei as chamadas trackEvent nos pontos corretos para registrar o sucesso ou a falha do registro.
-
-Código Signup.vue Corrigido
-Snippet de código
-
 <script setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
