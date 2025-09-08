@@ -56,7 +56,7 @@
 import { UserCircleIcon, ChevronDownIcon, LogoutIcon, SettingsIcon, InfoCircleIcon } from '@/icons'
 import { RouterLink } from 'vue-router'
 import { ref, onMounted, onUnmounted } from 'vue'
-
+import axios from 'axios';
 import { useRouter } from 'vue-router';
 const router = useRouter();
 
@@ -77,13 +77,23 @@ const closeDropdown = () => {
   dropdownOpen.value = false
 }
 
+const trackEvent = (eventName, eventData = {}) => {
+  axios.post('http://localhost:8000/api/telemetry/', {
+    event_name: eventName,
+    event_data: eventData,
+  })
+  .catch(error => {
+    console.error('Falha ao enviar evento de telemetria:', error);
+  });
+};
+
 const signOut = () => {
-  console.log('Signing out...')
-  localStorage.removeItem('access_token');
-  localStorage.removeItem('refresh_token');
-  router.push('/signin');
-  closeDropdown()
-}
+    trackEvent('auth_logout');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    router.push('/signin');
+    closeDropdown();
+};
 
 const handleClickOutside = (event) => {
   if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {

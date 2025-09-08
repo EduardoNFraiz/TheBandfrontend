@@ -291,17 +291,27 @@ const togglePasswordVisibility = () => {
   showPassword.value = !showPassword.value;
 };
 
-// Função para validar o formato do e-mail
+
 const validateEmail = (email: string): boolean => {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return re.test(String(email).toLowerCase());
 };
 
+const trackEvent = (eventName: string, eventData: Record<string, any> = {}) => {
+  axios.post('http://localhost:8000/api/telemetry/', {
+    event_name: eventName,
+    event_data: eventData,
+  })
+  .catch(error => {
+    console.error('Falha ao enviar evento de telemetria:', error);
+  });
+};
+
 const handleSubmit = async () => {
-  // 1. Limpa a mensagem de erro antes de qualquer validação
+
   errorMessage.value = '';
 
-  // 2. Validação de campos em branco
+
   if (!email.value.trim()) {
     errorMessage.value = 'Preencha um E-mail para fazer login!';
     return;
@@ -312,7 +322,7 @@ const handleSubmit = async () => {
     return;
   }
 
-  // 3. Validação de formato do e-mail
+
   if (!validateEmail(email.value)) {
     errorMessage.value = 'Formato de e-mail inválido. Por favor, corrija.';
     return;
@@ -321,7 +331,7 @@ const handleSubmit = async () => {
   try {
     const tokenEndpoint = 'http://localhost:8000/o/token/';
     
-    // Use suas credenciais reais do cliente OAuth
+    
     const clientId = 'BoXBD1EEvJsbrzAT0UQ07UFUBhmwwfN0XSNHLbP8'; 
     const clientSecret = 'ZGez6HlWHhC0DbOqDuXUJsbrhuajUy3DfqDIqfUgRYvFFdAvzB8UInjoOgtd6el845cmd4AZ4ov9WzFrHI7Xklp1fGcLP9aU322erbOPMJonrR17EeBgnbCYYM7GYf4V';
     
@@ -343,10 +353,18 @@ const handleSubmit = async () => {
 
     localStorage.setItem('access_token', accessToken);
     localStorage.setItem('refresh_token', refreshToken);
-
-    router.push('/');
+    if (response.status === 200) {
+            // Sucesso no login: chame o evento auth_login_success
+            trackEvent('auth_login_success', { user_email: email.value });
+            router.push('/');
+        } else {
+            // Caso de falha de login, mas com resposta 200 (se sua lógica permitir)
+            trackEvent('auth_login_error', { user_email: email.value, error_message: 'Login failed' });
+        }
 
   } catch (error) {
+    const erroMessage = axios.isAxiosError(error) ? error.message : 'Unknown error';
+    trackEvent('auth_login_error', { user_email: email.value, error_message: erroMessage });
     if (axios.isAxiosError(error) && error.response) {
       console.error('Login falhou:', error.response.data);
       
