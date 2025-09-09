@@ -25,16 +25,21 @@ frontend/
 ├── node_modules/             # Dependências do projeto
 ├── public/                   # Arquivos estáticos públicos
 ├── src/                      # Código-fonte principal (componentes, páginas, etc.)
-│ ├── assets/                    # Arquivos estáticos (imagens, fontes, estilos globais)
-│ ├── components/                # Componentes Vue reutilizáveis
-│ ├── composables/               # Funções reutilizáveis (Composition API)
-│ ├── icons/                     # Ícones do projeto
-│ ├── router/                    # Definição de rotas (Vue Router)
-│ ├── views/                     # Páginas principais da aplicação
-│ ├── App.vue                    # Componente raiz da aplicação
-│ ├── index.d.ts                 # Definições de tipos globais
-│ ├── main.ts                    # Ponto de entrada da aplicação (monta o Vue app)
-│ └── vue-shims.d.ts          # Tipos para arquivos .vue no TypeScript
+│   ├── main.ts                
+│   ├── App.vue                
+│   ├── index.d.ts             
+│   ├── vue.shims.d.ts         
+│   ├── modules/              # 🎯 MÓDULOS DE NEGÓCIO
+│   │   └── app/               
+│   │       ├── router/       # Definição de rotas (Vue Router)
+│   │       │   └── index.ts   
+│   │       └── views/        # Páginas principais da aplicação
+│   │
+│   ├── common/               # 🔧 RECURSOS COMPARTILHADOS  
+│       ├── assets/            
+│       │   └── icons/        # Ícones do projeto 
+│       ├── components/       
+│       └── composables/ 
 ├── .editorconfig             # Configurações de formatação
 ├── .gitattributes            # Configurações Git
 ├── .gitignore                # Arquivos e pastas ignorados pelo Git
