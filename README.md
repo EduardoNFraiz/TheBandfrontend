@@ -12,6 +12,7 @@
 * [Vite](https://vitejs.dev/)  
 * [TailwindCSS](https://tailwindcss.com/)  
 * [Axios](https://axios-http.com/) 
+* [TypeScript](https://www.typescriptlang.org/)
  
 
 ---
@@ -60,3 +61,37 @@ frontend/
 
 - [Node.js (>= 18)](https://nodejs.org/)  
 - [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)  
+
+### 🔹 2. Instalar dependências  
+
+```
+npm install
+# ou
+yarn install
+```
+
+### 🔹 3. Rodar em ambiente local 
+
+```
+npm run dev
+# ou
+yarn dev
+```
+A aplicação estará disponível em: http://localhost:5173
+
+⚠️ Importante: O frontend precisa que o backend esteja rodando em http://localhost:8000
+(ou configure uma URL diferente).
+
+### 🚀 Build do projeto:
+
+```
+npm run build
+# ou
+yarn build
+```
+
+### 🙋 Contribuições
+Pull requests são muito bem-vindos! Para mudanças maiores, por favor, abra uma issue primeiro para discutirmos o que você gostaria de mudar.
+
+### ✨ Autor
+Feito com 💙 por The Band Dev Team
