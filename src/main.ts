@@ -8,7 +8,7 @@ import 'flatpickr/dist/flatpickr.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from "./modules/app/router";
+import router from "./common/router/index.ts";
 import VueApexCharts from 'vue3-apexcharts'
 import axios from 'axios'
 

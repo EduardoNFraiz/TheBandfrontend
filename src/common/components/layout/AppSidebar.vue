@@ -23,7 +23,7 @@
         <img
           v-if="isExpanded || isHovered || isMobileOpen"
           class="dark:hidden"
-          src="/images/logo/logo.svg"
+          src="/images/logo/logo2.png"
           alt="Logo"
           width="150"
           height="40"
@@ -31,14 +31,14 @@
         <img
           v-if="isExpanded || isHovered || isMobileOpen"
           class="hidden dark:block"
-          src="/images/logo/logo-dark.svg"
+          src="/images/logo/logo2.png"
           alt="Logo"
           width="150"
           height="40"
         />
         <img
           v-else
-          src="/images/logo/logo-icon.svg"
+          src="/images/logo/icon.png"
           alt="Logo"
           width="32"
           height="32"
@@ -206,7 +206,6 @@
           </div>
         </div>
       </nav>
-      <SidebarWidget v-if="isExpanded || isHovered || isMobileOpen" />
     </div>
   </aside>
 </template>
@@ -231,7 +230,6 @@ import {
   PlugInIcon,
 }from "@/common/assets/icons";
 ;
-import SidebarWidget from "./SidebarWidget.vue";
 import BoxCubeIcon from "@/common/assets/icons/BoxCubeIcon.vue";
 import { useSidebar } from "@/common/composables/useSidebar";
 import SettingsIcon from "@/common/assets/icons/SettingsIcon.vue";
@@ -242,84 +240,19 @@ const { isExpanded, isMobileOpen, isHovered, openSubmenu } = useSidebar();
 
 const menuGroups = [
   {
-    title: "Menu",
     items: [
-      {
-        icon: GridIcon,
-        name: "Dashboard",
-        subItems: [{ name: "Ecommerce", path: "/", pro: false }],
-      },
-      {
-        icon: CalenderIcon,
-        name: "Calendar",
-        path: "/calendar",
-      },
-      {
-        icon: UserCircleIcon,
-        name: "User Profile",
-        path: "/profile",
-      },
+      { name: "Organizações", path: "/organizations", pro: false },
+      { name: "Aplicações", path: "/applications", pro: false },
+      { name: "Configurações", path: "/configurations", pro: false },
 
       {
-        name: "Forms",
+        name: "Relatórios",
         icon: ListIcon,
         subItems: [
-          { name: "Form Elements", path: "/form-elements", pro: false },
-        ],
-      },
-      {
-        name: "Tables",
-        icon: TableIcon,
-        subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
-      },
-      {
-        name: "Pages",
-        icon: PageIcon,
-        subItems: [
-          { name: "Black Page", path: "/blank", pro: false },
-          { name: "404 Page", path: "/error-404", pro: false },
-        ],
-      },
-    ],
-  },
-  {
-    title: "Others",
-    items: [
-      {
-        icon: PieChartIcon,
-        name: "Charts",
-        subItems: [
-          { name: "Line Chart", path: "/line-chart", pro: false },
-          { name: "Bar Chart", path: "/bar-chart", pro: false },
-        ],
-      },
-      {
-        icon: BoxCubeIcon,
-        name: "Ui Elements",
-        subItems: [
-          { name: "Alerts", path: "/alerts", pro: false },
-          { name: "Avatars", path: "/avatars", pro: false },
-          { name: "Badge", path: "/badge", pro: false },
-          { name: "Buttons", path: "/buttons", pro: false },
-          { name: "Images", path: "/images", pro: false },
-          { name: "Videos", path: "/videos", pro: false },
-        ],
-      },
-      {
-        icon: PlugInIcon,
-        name: "Authentication",
-        subItems: [
-          { name: "Signin", path: "/signin", pro: false },
-          { name: "Signup", path: "/signup", pro: false },
-        ],
-      },
-      {
-        icon: SettingsIcon,
-        name: "Gerenciamento", // Nome da nova aba principal
-        subItems: [
-          { name: "Criar Organização", path: "/organizations/create", pro: false },
-          { name: "Criar Aplicação", path: "/applications/create", pro: false },
-          { name: "Criar Configuração", path: "/configurations/create", pro: false },
+          { name: "Desenvolvedor", path: "/developer", pro: false },
+          { name: "Organização", path: "/", pro: false},
+          { name: "Repositório", path: "/repository", pro: false},
+          { name: "Equipe", path: "/team", pro: false},
         ],
       },
       // ... Add other menu items here
